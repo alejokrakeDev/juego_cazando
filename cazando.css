@@ -1,42 +1,161 @@
+/* Estilos generales */
 body {
   text-align: center;
-  font-family: Arial, sans-serif;
-  background: #f0f0f0;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background: linear-gradient(135deg, #1a1446, #251e5f, #120f38);
+  background-size: 400% 400%;
+  animation: fondoMovimiento 18s ease infinite;
   margin: 0;
-  padding: 20px;
+  padding: 30px 20px;
+  color: #ffffff;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
+@keyframes fondoMovimiento {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Título y autor */
 h1 {
-  margin-bottom: 5px;
+  margin: 0 0 8px;
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #9933ff, #ff33cc, #ff9900);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 15px rgba(153, 51, 255, 0.6);
 }
 
+p:first-of-type {
+  margin: 0 0 25px;
+  font-size: 1.1rem;
+  color: #d0d0ff;
+  opacity: 0.9;
+}
+
+/* Área de juego */
+canvas {
+  background: #ffffff;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 
+    0 0 20px rgba(0, 229, 255, 0.7),
+    0 0 40px rgba(0, 0, 200, 0.35);
+  transition: transform 0.25s ease;
+}
+
+canvas:hover {
+  transform: scale(1.015);
+}
+
+/* Contenedor de controles */
+.controles {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Espacio uniforme entre botones */
+}
+
+/* BOTONES DE FLECHAS - AJUSTE EXACTO */
+button {
+  width: 52px;
+  height: 52px;
+  margin: 0;
+  padding: 0; /* Sin relleno extra */
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1; /* Evita desajustes verticales */
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(145deg, #00b8ff, #0077ff);
+  color: white;
+  box-shadow: 
+    0 4px 12px rgba(0, 184, 255, 0.4),
+    inset 0 0 0 rgba(255,255,255,0.3);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrado perfecto horizontal y vertical */
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 16px rgba(0, 184, 255, 0.6),
+    0 0 15px rgba(0, 229, 255, 0.5);
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 184, 255, 0.3);
+}
+
+/* Botón REINICIAR */
+button[onclick="reiniciar();"] {
+  width: auto;
+  min-width: 110px;
+  height: 45px;
+  padding: 0 20px;
+  font-size: 16px;
+  margin-top: 8px;
+  background: linear-gradient(145deg, #ff4757, #ff6b35);
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
+}
+
+button[onclick="reiniciar();"]:hover {
+  background: linear-gradient(145deg, #ff6b81, #ff884d);
+  box-shadow: 0 6px 16px rgba(255, 71, 87, 0.6);
+}
+
+/* Panel de Puntos y Tiempo */
 .panel {
-  margin: 15px 0;
-  font-size: 18px;
+  margin: 25px auto 0;
+  font-size: 19px;
+  font-weight: bold;
   display: flex;
   justify-content: center;
-  gap: 30px;
+  align-items: center;
+  gap: 35px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 28px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.25);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  max-width: fit-content;
 }
 
-canvas {
-  background: white;
-  border: 2px solid black;
+.panel span {
+  color: #fff8a8;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.7);
 }
 
-.controles {
-  margin-top: 20px;
-}
-
-button {
-  margin: 5px;
-  padding: 10px 16px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
+/* Mensaje de estado */
 #mensaje {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
-  color: darkred;
-  margin-top: 15px;
+  margin-top: 20px;
+  color: #ffd700;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.9), 0 0 25px rgba(255, 0, 100, 0.5);
+  animation: parpadeo 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes parpadeo {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+/* Corrección extra si fuera necesario */
+button::after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
 }
